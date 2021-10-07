@@ -34,6 +34,9 @@ export class RegistroPersona {
     @UpdateDateColumn({ type: "timestamp"})
     updated_at: Date;
 
+    @Column({ name: 'municipioId' })
+    municipioId: number;
+
     @ManyToOne(() => Municipio, (m: Municipio) => m.registros, { nullable: true})
     municipio: Municipio;
 

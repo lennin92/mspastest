@@ -6,7 +6,26 @@ import * as Koa from "koa";
 import * as Router from "koa-router";
 import * as bodyParser from "koa-bodyparser";
 
-createConnection().then(async connection => {
+require('dotenv').config()
+
+createConnection({
+  type: "postgres",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_HOST),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  },
+  entities: [
+    "dist/entity/**/*.{ts,js}"
+  ],
+  synchronize: true,
+}).then(async connection => {
 
   // create koa app
   const app = new Koa();

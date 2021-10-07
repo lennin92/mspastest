@@ -27,6 +27,25 @@ export async function postInitializeDB(context: Context) {
     m = Municipio.createMunicipio('Ciudad de Guatemala', d);
     await repositorioMunicipio.save(m);
   }
+  // GET OR CREATE MUNICIPIO CON ID=2
+  let m2 = await repositorioMunicipio.findOne(2);
+  if (!m2) {
+    m2 = Municipio.createMunicipio('Amatitlan', d);
+    await repositorioMunicipio.save(m2);
+  }
+
+  // GET OR CREATE DEPARTAMENTO CON ID=2
+  let d2 = await repositorioDepartamento.findOne(2);
+  if (!d2) {
+    d2 = Departamento.createDepartamento('Escuintla', null);
+    await repositorioDepartamento.save(d2);
+  }
+  // GET OR CREATE MUNICIPIO CON ID=3
+  let m3 = await repositorioMunicipio.findOne(3);
+  if (!m3) {
+    m3 = Municipio.createMunicipio('Iztapa', d2);
+    await repositorioMunicipio.save(m3);
+  }
 
   // GET OR CREATE REGISTRO CON CUI = 2205011
   let r1 = await repositorioRegistro.findOne('2205011');

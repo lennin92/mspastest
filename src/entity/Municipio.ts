@@ -17,6 +17,9 @@ export class Municipio {
     @UpdateDateColumn({ type: "timestamp"})
     updated_at: Date;
 
+    @Column({ name: 'departamentoId' })
+    departamentoId: number;
+
     @ManyToOne(() => Departamento, (departamento: Departamento) => departamento.municipios)
     departamento: Departamento
 

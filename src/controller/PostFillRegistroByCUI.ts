@@ -1,11 +1,13 @@
 import {Context} from "koa";
 import {getManager} from "typeorm";
-import { RegistroPersona } from "../entity/RegistroPersona";
+import {Departamento} from "../entity/Departamento";
+import {Municipio} from "../entity/Municipio";
+import {RegistroPersona} from "../entity/RegistroPersona";
 
 /**
  * Cargar registro segun cui
  */
-export async function getRegistroByCui(context: Context, next) {
+export async function postInitializeDB(context: Context, next) {
 
   let repositorioRegistro = getManager().getRepository(RegistroPersona);
   let { cui } = context.params
@@ -17,5 +19,6 @@ export async function getRegistroByCui(context: Context, next) {
   }
 
   context.body = r;
+  context.status = 201;
   await next();
 }
