@@ -30,6 +30,7 @@ createConnection({
   // create koa app
   const app = new Koa();
   const router = new Router();
+  const bodyParser = require('koa-bodyparser');
 
   // register all application routes
   AppRoutes.forEach(route => router[route.method](route.path, route.action));

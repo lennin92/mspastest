@@ -34,7 +34,7 @@ export class RegistroPersona {
     @UpdateDateColumn({ type: "timestamp"})
     updated_at: Date;
 
-    @Column({ name: 'municipioId' })
+    @Column({ name: 'municipioId', type: 'integer', nullable: true})
     municipioId: number;
 
     @ManyToOne(() => Municipio, (m: Municipio) => m.registros, { nullable: true})
@@ -47,6 +47,8 @@ export class RegistroPersona {
     comunidad_linguistica: string;
 
     public static calcularEdad(fecha_nacimiento :Date) :number {
+      console.log(fecha_nacimiento);
+      console.log(new Date());
         return (new Date().getFullYear() - fecha_nacimiento.getFullYear());
     }
 
@@ -76,5 +78,5 @@ export class RegistroPersona {
             reg.fecha_parto = fecha_parto;
           }
           return reg;
-      }
+    }
 }

@@ -2,6 +2,7 @@ import {Context} from "koa";
 import {getManager} from "typeorm";
 import {Departamento} from "../entity/Departamento";
 import {Municipio} from "../entity/Municipio";
+import { RegistroCUI } from "../entity/RegistroCUI";
 import {RegistroPersona} from "../entity/RegistroPersona";
 
 /**
@@ -13,6 +14,7 @@ export async function postInitializeDB(context: Context) {
   let repositorioDepartamento = getManager().getRepository(Departamento);
   let repositorioMunicipio = getManager().getRepository(Municipio);
   let repositorioRegistro = getManager().getRepository(RegistroPersona);
+  let repositorioRegistroCUI = getManager().getRepository(RegistroCUI);
 
   // GET OR CREATE DEPARTAMENTO CON ID=1
   let d = await repositorioDepartamento.findOne(1);
@@ -101,5 +103,54 @@ export async function postInitializeDB(context: Context) {
     await repositorioRegistro.save(r2);
     console.log("Saved a new user with id: " + r2.cui);
   } 
+
+
+
+  // Populando registros del CUI
+  let cui1 = await repositorioRegistroCUI.findOne('1111111');
+  if (!cui1) {
+    cui1 = RegistroCUI.createRegistro(
+      '1111111',
+      'Nombres2',
+      'Apelidos2',
+      new Date('Feb, 20, 1990')
+    );
+    await repositorioRegistroCUI.save(cui1);
+    console.log("Saved a new user with id: " + cui1.cui);
+  } 
+  let cui2 = await repositorioRegistroCUI.findOne('1111111');
+  if (!cui2) {
+    cui2 = RegistroCUI.createRegistro(
+      '1111111',
+      '222222',
+      'Apelidos2221111',
+      new Date('Feb, 20, 1991')
+    );
+    await repositorioRegistroCUI.save(cui2);
+    console.log("Saved a new user with id: " + cui2.cui);
+  } 
+  let cui3 = await repositorioRegistroCUI.findOne('040411');
+  if (!cui3) {
+    cui3 = RegistroCUI.createRegistro(
+      '040411',
+      'NOMBRES !11',
+      'Apelid 221111',
+      new Date('Feb, 20, 1991')
+    );
+    await repositorioRegistroCUI.save(cui3);
+    console.log("Saved a new user with id: " + cui3.cui);
+  } 
+  let cui4 = await repositorioRegistroCUI.findOne('04A--1');
+  if (!cui4) {
+    cui4 = RegistroCUI.createRegistro(
+      '04A--1',
+      'ASDFGG AA',
+      'Apelid 221111',
+      new Date('Feb, 20, 1991')
+    );
+    await repositorioRegistroCUI.save(cui4);
+    console.log("Saved a new user with id: " + cui4.cui);
+  } 
+
   context.status = 200;
 }
