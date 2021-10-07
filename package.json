@@ -1,0 +1,30 @@
+{
+   "name": "test",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "dependencies": {
+      "koa": "^2.13.3",
+      "koa-bodyparser": "^4.3.0",
+      "koa-json": "^2.0.2",
+      "koa-logger": "^3.2.1",
+      "koa-router": "^10.1.1",
+      "koa2-swagger-ui": "^5.2.1",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.38"
+   },
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "ts-node src/index.ts",
+      "typeorm": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm" 
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC"
+}
